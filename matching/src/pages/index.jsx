@@ -11,6 +11,7 @@ function Root(){
     return(
         <AppLayout>
             최상위 컴포넌트
+            
             <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/test" element={<Test /> } />
