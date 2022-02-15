@@ -10,6 +10,7 @@ const TopNav = styled.nav`
   height: 130px;
   opacity: 1;
   justify-content: space-between;
+  top: 0;
 `;
 
 const Logo = styled.a`
@@ -55,14 +56,27 @@ const Footer = styled.footer`
   padding-top: 25px;
 `;
 
-const Layout = () => (
+const Children = styled.div`
+  postition: absoulte;
+  width: 100%;
+  height: 100%;
+  margin-top: 160px;
+  margin-bottom: 80px;
+  margin-left: 30px;
+`;
+
+const Layout = ({children}) => (
   <>
     <TopNav>
       <Logo href="#">멋사매칭</Logo>
       <SignIn href="">Sign In</SignIn>
       <SignUp href="">Sign Up</SignUp>
     </TopNav>
+
+    <Children>{children}</Children>
     <Footer>©2021 b3c1. All rights Reserved.</Footer>
+
+
   </>
 );
 
