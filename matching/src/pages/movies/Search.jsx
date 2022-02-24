@@ -1,6 +1,6 @@
 const Search = () => {
     return(
-        <div>여기에 게시판 만들면 됩니당</div>
+        <div>선택할 수 있는 영화 목록</div>
     );
 };
 

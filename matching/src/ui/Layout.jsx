@@ -69,8 +69,8 @@ const Layout = ({children}) => (
   <>
     <TopNav>
       <Logo href="#">멋사매칭</Logo>
-      <SignIn href="">Sign In</SignIn>
-      <SignUp href="">Sign Up</SignUp>
+      <SignIn href="/accounts/login">Sign In</SignIn>
+      <SignUp href="/accounts/classnet">Sign Up</SignUp>
     </TopNav>
 
     <Children>{children}</Children>
