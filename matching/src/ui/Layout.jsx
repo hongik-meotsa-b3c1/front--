@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import homelogo from "ui/homelogo.jpeg";
+import { useNavigate } from "react-router";
 
 const TopNav = styled.nav`
   z-index: 1000;
+  background-color: #f3f3f3;
   position: fixed;
   font-family: Jua;
   display: flex;
-  background-color: black;
   width: 100%;
   height: 130px;
   opacity: 1;
@@ -13,20 +15,20 @@ const TopNav = styled.nav`
   top: 0;
 `;
 
-const Logo = styled.a`
-  font-size: 64px;
-  font-family: Jua;
+const Logo = styled.img`
+  height: 80px;
   margin-left: 25px;
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
-  color: white;
+  color: black;
+  cursor: pointer;
 `;
 
 const SignIn = styled.a`
   font-size: 36px;
   font-family: Jua;
-  color: white;
+  color: black;
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 24px;
@@ -34,7 +36,17 @@ const SignIn = styled.a`
 
 const SignUp = styled.a`
   font-size: 36px;
-  color: white;
+  color: black;
+  font-family: Jua;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 24px;
+  margin-right: 60px;
+`;
+
+const LogOut = styled.a`
+  font-size: 36px;
+  color: black;
   font-family: Jua;
   margin-top: auto;
   margin-bottom: auto;
@@ -49,10 +61,10 @@ const Footer = styled.footer`
   height: 50px;
   font-family: Jua;
   display: flex;
-  background-color: black;
+  background-color: #f3f3f3;
   opacitiy: 1;
   justify-content: center;
-  color: white;
+  color: black;
   padding-top: 25px;
 `;
 
@@ -65,19 +77,37 @@ const Children = styled.div`
   margin-left: 30px;
 `;
 
-const Layout = ({children}) => (
-  <>
-    <TopNav>
-      <Logo href="#">멋사매칭</Logo>
-      <SignIn href="/accounts/login">Sign In</SignIn>
-      <SignUp href="/accounts/classnet">Sign Up</SignUp>
-    </TopNav>
+const Layout = ({ children }) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <TopNav>
+        <Logo onClick={() => navigate("/")} src={homelogo} />
 
-    <Children>{children}</Children>
-    <Footer>©2021 b3c1. All rights Reserved.</Footer>
+        {localStorage.token ? (
+          <>
+            <LogOut
+              onClick={() => {
+                localStorage.clear();
+                navigate("/accounts/login");
+              }}
+            >
+              Log Out
+            </LogOut>
+            {/* 여기에 로그아웃 컴포넌트 만들어서 적용시키면 됨 */}
+          </>
+        ) : (
+          <>
+            <SignIn href="/accounts/login">Sign In</SignIn>
+            <SignUp href="/accounts/classnet">Sign Up</SignUp>
+          </>
+        )}
+      </TopNav>
 
-
-  </>
-);
+      <Children>{children}</Children>
+      <Footer>©2021 b3c1. All rights Reserved.</Footer>
+    </>
+  );
+};
 
 export default Layout;

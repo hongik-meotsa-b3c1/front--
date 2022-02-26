@@ -9,7 +9,7 @@ import { AppProvider } from "store";
 ReactDOM.render(
   <BrowserRouter>
     <AppProvider>
-    <Root />
+      <Root />
     </AppProvider>
   </BrowserRouter>,
    document.getElementById("root")
