@@ -8,7 +8,7 @@ import Layout from "ui/Layout";
 import Write from "./posts/write";
 import PublicRoute from "components/PublicRoute";
 import PrivateRoute from "components/PrivateRoute";
-import { useState } from "react";
+import MovieSearch from "./posts/MovieSearch";
 
 const Root = () => {
 
@@ -23,16 +23,20 @@ const Root = () => {
             </PrivateRoute>
           }
         />
-        <Route path="/test" element={<Test />} />
         <Route path="/accounts/*" element={<AccountsRoutes />} />
         <Route path="/movies/*" element={
             <PrivateRoute>
               <MoviesRoutes />
             </PrivateRoute>
           }/>
-        <Route path="/write" element={
+        {/* <Route path="/write" element={
             <PrivateRoute>
               <Write />
+            </PrivateRoute>
+          }/> */}
+        <Route path="/test" element={
+            <PrivateRoute>
+              <MovieSearch />
             </PrivateRoute>
           }/>
       </Routes>

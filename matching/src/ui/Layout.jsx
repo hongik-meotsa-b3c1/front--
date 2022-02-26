@@ -54,6 +54,33 @@ const LogOut = styled.a`
   margin-right: 60px;
 `;
 
+const Write = styled.a`
+  font-size: 36px;
+  font-family: Jua;
+  color: black;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 24px;
+`;
+
+const PostList = styled.a`
+  font-size: 36px;
+  font-family: Jua;
+  color: black;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 24px;
+`;
+
+const Test = styled.a`
+  font-size: 36px;
+  font-family: Jua;
+  color: black;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 24px;
+`;
+
 const Footer = styled.footer`
   width: 100%;
   position: fixed;
@@ -86,6 +113,9 @@ const Layout = ({ children }) => {
 
         {localStorage.token ? (
           <>
+            <Test href='/test'>영화검색(테스트)</Test>
+            <PostList href='#'>글목록</PostList>
+            <Write href='/#'>글쓰기</Write>
             <LogOut
               onClick={() => {
                 localStorage.clear();
