@@ -1,10 +1,10 @@
 import MovieSearch from "./MovieSearch";
-import post from "apis/post";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Form, Input, InputNumber, Button, DatePicker } from "antd";
 import useDidMountEffect from "utils/useDidMountEffect";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const Back = styled.div`
   background-color: gray;
@@ -15,7 +15,7 @@ const Back = styled.div`
   display: flex;
   justify-content: center;
 
-  .contentForm{
+  .contentForm {
     height: 270px;
   }
 `;
@@ -50,8 +50,6 @@ const MovieInfo = styled.div`
   }
   // 아악시발 왜 세로로 안돼 세로코드 추가
 `;
-
-
 
 const layout = {
   labelCol: {
@@ -89,15 +87,22 @@ const Write = () => {
   const onFinish = async (values) => {
     values.movie_id = movie.id;
     values.gather_date = date;
-    
-    await post.write(values);
-    alert('등록되었습니다.');
-    navigate('/');
+
+    axios
+      .post("http://localhost:8000/movie/postWrite/", values)
+      .then((response) => {
+        console.log(response);
+        alert("등록되었습니다.");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("에러 : ", error);
+      });
   };
   const navigate = useNavigate();
   const [movie, setMovie] = useState();
   const [isMovie, setIsMovie] = useState(false);
-  const [date,setDate] = useState(null);
+  const [date, setDate] = useState(null);
 
   const getMovie = (data) => {
     //어쨌든 여기에서 data는 내 영화 객체!
@@ -145,53 +150,68 @@ const Write = () => {
             >
               <InputNumber />
             </Form.Item>
-              <span>
-              <label htmlFor='date'>
-            모집날짜 <input type='date'name='gather_date' id='date' style={{width: 158.141,height:32}}
-            onChange={(e)=>{
-              setDate(e.target.value);
-            }}/>
-            </label>
+            <span>
+              <label htmlFor="date">
+                모집날짜{" "}
+                <input
+                  type="date"
+                  name="gather_date"
+                  id="date"
+                  style={{ width: 158.141, height: 32 }}
+                  onChange={(e) => {
+                    setDate(e.target.value);
+                  }}
+                />
+              </label>
             </span>
           </Gather>
 
           <Search>
             영화검색 <MovieSearch getMovie={getMovie} />
           </Search>
-          {isMovie? 
+          {isMovie ? (
             <MovieInfo>
-            <img
-              style={{ width: 150, height: 200 }}
-              src={movie.movie_image}
-              disabled
-            />
-            <span>
-              <input
-                value={movie.movie_title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")+' ('+ (movie.movie_pubDate)+')'}
-                className="movieText"
+              <img
+                style={{ width: 150, height: 200 }}
+                src={movie.movie_image}
                 disabled
               />
-              
-              <input value={movie.movie_director} className="movieText" disabled />
-            </span>
-          </MovieInfo>
-          : <MovieInfo>
-            <input
-              style={{ width: 150, height: 200 }}
-              value="영화 포스터"
-              disabled
-            />
-            <span>
+              <span>
+                <input
+                  value={
+                    movie.movie_title
+                      .replace(/<b>/gi, "")
+                      .replace(/<\/b>/gi, "") +
+                    " (" +
+                    movie.movie_pubDate +
+                    ")"
+                  }
+                  className="movieText"
+                  disabled
+                />
+
+                <input
+                  value={movie.movie_director}
+                  className="movieText"
+                  disabled
+                />
+              </span>
+            </MovieInfo>
+          ) : (
+            <MovieInfo>
               <input
-                value="영화 제목"
-                className="movieText"
+                style={{ width: 150, height: 200 }}
+                value="영화 포스터"
                 disabled
               />
-              
-              <input value="영화 감독" className="movieText" disabled />
-            </span>
-          </MovieInfo>}
-          <Form.Item  name={"content"} label="내용">
+              <span>
+                <input value="영화 제목" className="movieText" disabled />
+
+                <input value="영화 감독" className="movieText" disabled />
+              </span>
+            </MovieInfo>
+          )}
+          <Form.Item name={"content"} label="내용">
             <Input.TextArea className="contentForm" />
           </Form.Item>
 
@@ -200,7 +220,6 @@ const Write = () => {
               등록하기
             </Button>
           </Form.Item>
-
         </Form>
       </Back>
     </div>

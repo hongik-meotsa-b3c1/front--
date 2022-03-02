@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default {
-  write: (id,title,content,movie_id,NumOfPeople,gather_date) =>
+  write: (NumOfPeople,content,gather_date,movie_id,title) =>
     axios({
-      url: 'http://localhost:8000/movie/writePost',
+      url: `http://localhost:8000/movie/postWrite`,
       method: "POST",
-      data: { title,content,movie_id,NumOfPeople,gather_date },
+      data: { NumOfPeople,content,gather_date,movie_id,title },
     }),
 };
