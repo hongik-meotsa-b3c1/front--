@@ -72,14 +72,6 @@ const PostList = styled.a`
   margin-left: 24px;
 `;
 
-const Test = styled.a`
-  font-size: 36px;
-  font-family: Jua;
-  color: black;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 24px;
-`;
 
 const Footer = styled.footer`
   width: 100%;
@@ -113,9 +105,8 @@ const Layout = ({ children }) => {
 
         {localStorage.token ? (
           <>
-            <Test href='/test'>영화검색(테스트)</Test>
             <PostList href='#'>글목록</PostList>
-            <Write href='/#'>글쓰기</Write>
+            <Write href='/write'>글쓰기</Write>
             <LogOut
               onClick={() => {
                 localStorage.clear();

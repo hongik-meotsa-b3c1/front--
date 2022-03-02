@@ -3,7 +3,7 @@
 const Movie = ({id, title, director, pubDate }) =>{
     return(
         <div>
-            <h1>{title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")}({pubDate}) - {director}</h1>
+            <h3>{title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")}({pubDate}) - {director}</h3>
         </div>
     );
 }

@@ -5,7 +5,7 @@ import Test from "./Test";
 import AccountsRoutes from "./accounts/index";
 import MoviesRoutes from "./movies/index";
 import Layout from "ui/Layout";
-import Write from "./posts/write";
+import Write from "./posts/Write";
 import PublicRoute from "components/PublicRoute";
 import PrivateRoute from "components/PrivateRoute";
 import MovieSearch from "./posts/MovieSearch";
@@ -29,11 +29,11 @@ const Root = () => {
               <MoviesRoutes />
             </PrivateRoute>
           }/>
-        {/* <Route path="/write" element={
+        <Route path="/write" element={
             <PrivateRoute>
               <Write />
             </PrivateRoute>
-          }/> */}
+          }/>
         <Route path="/test" element={
             <PrivateRoute>
               <MovieSearch />
