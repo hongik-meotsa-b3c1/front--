@@ -1,7 +1,7 @@
 import MovieSearch from "./MovieSearch";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { Form, Input, InputNumber, Button, DatePicker } from "antd";
+import { Form, Input, InputNumber, Button } from "antd";
 import useDidMountEffect from "utils/useDidMountEffect";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -14,6 +14,7 @@ const Back = styled.div`
   padding-right: 500px;
   display: flex;
   justify-content: center;
+  margin-left: 140px;
 
   .contentForm {
     height: 270px;
@@ -37,18 +38,25 @@ const Search = styled.div`
   padding-left: 233px;
 `;
 
-const MovieInfo = styled.div`
+const MovieInfo = styled.span`
   margin-left: 265px;
   margin-top: 20px;
   margin-bottom: 20px;
-  position: relative;
+  display: flex;
+  margin-left: 280px;
+  
 
   & .movieText {
     width: 200px;
     height: 25px;
-    float: right;
+    padding-left: 100px;
+    padding-top: 50px;
   }
-  // 아악시발 왜 세로로 안돼 세로코드 추가
+
+  .space{
+    padding-bottom: 50px;
+  }
+
 `;
 
 const layout = {
@@ -60,16 +68,6 @@ const layout = {
   },
 };
 /* eslint-disable no-template-curly-in-string */
-
-const config = {
-  rules: [
-    {
-      type: "object",
-      required: true,
-      message: "Please select time!",
-    },
-  ],
-};
 
 const validateMessages = {
   required: "${label}을 입력해주세요.",
@@ -90,10 +88,11 @@ const Write = () => {
 
     axios
       .post("http://localhost:8000/movie/postWrite/", values)
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        console.log(res);
         alert("등록되었습니다.");
-        navigate("/");
+        // navigate('/${res.data}');
+        //movie/postWrite에 post후에 id 반환 요청 
       })
       .catch((error) => {
         console.log("에러 : ", error);
@@ -176,7 +175,7 @@ const Write = () => {
                 src={movie.movie_image}
                 disabled
               />
-              <span>
+              <span className="movieText">
                 <input
                   value={
                     movie.movie_title
@@ -186,28 +185,28 @@ const Write = () => {
                     movie.movie_pubDate +
                     ")"
                   }
-                  className="movieText"
+                  style={{width:208}}
                   disabled
                 />
-
+                <div className='space'/>
                 <input
                   value={movie.movie_director}
-                  className="movieText"
+                  style={{width:208}}
                   disabled
                 />
               </span>
             </MovieInfo>
           ) : (
-            <MovieInfo>
+            <MovieInfo >
               <input
                 style={{ width: 150, height: 200 }}
                 value="영화 포스터"
                 disabled
               />
-              <span>
-                <input value="영화 제목" className="movieText" disabled />
-
-                <input value="영화 감독" className="movieText" disabled />
+              <span className='movieText'>
+                <input value="영화 제목" style={{width:208}} disabled />
+                <div className='space'/>
+                <input value="영화 감독" style={{width:208}} disabled />
               </span>
             </MovieInfo>
           )}

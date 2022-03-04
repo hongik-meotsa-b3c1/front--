@@ -9,6 +9,7 @@ const { Option } = Select;
 
 const SearchMovie = styled.span`
     padding-right: 122px;
+    
 `;
 
 //여기에다가 영화정보를 글쓰기 페이지로 리턴해주는 코드를 짜야합니당.
@@ -44,16 +45,16 @@ const MovieSearch = (props) => {
       <SearchMovie>
         <input
           name="moviename"
-          placeholder="검색할 영화제목을 입력하세요"
+          placeholder="영화 제목을 입력해주세요."
           onChange={(e) => setMoviename(e.target.value)}
         />
         <input type="submit" value="검색하기" onClick={handleSubmit} />
       </SearchMovie>
       {loading ? (
-        <Select defaultValue="Search plz :)" style={{ width: 228 }} disabled />
+        <Select defaultValue="영화를 검색해주세요 :)" style={{ width: 228 }} disabled />
       ) : (
         <Select
-          defaultValue="Select plz :)"
+          defaultValue="영화를 선택해주세요 :)"
           style={{ width: 228 }}
           onChange={handleChange}
         >

@@ -106,7 +106,7 @@ const Layout = ({ children }) => {
         {localStorage.token ? (
           <>
             <PostList href='#'>글목록</PostList>
-            <Write href='/write'>글쓰기</Write>
+            <Write href='/posts/write'>글쓰기</Write>
             <LogOut
               onClick={() => {
                 localStorage.clear();

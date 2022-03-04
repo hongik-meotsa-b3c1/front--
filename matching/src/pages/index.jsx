@@ -1,14 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "./Main";
-import Test from "./Test";
 import AccountsRoutes from "./accounts/index";
-import MoviesRoutes from "./movies/index";
 import Layout from "ui/Layout";
-import Write from "./posts/Write";
-import PublicRoute from "components/PublicRoute";
 import PrivateRoute from "components/PrivateRoute";
-import MovieSearch from "./posts/MovieSearch";
+import PostsRoute from "./posts";
 
 const Root = () => {
 
@@ -24,21 +20,13 @@ const Root = () => {
           }
         />
         <Route path="/accounts/*" element={<AccountsRoutes />} />
-        <Route path="/movies/*" element={
+
+          <Route path="/posts/*" element={
             <PrivateRoute>
-              <MoviesRoutes />
+              <PostsRoute/>
             </PrivateRoute>
           }/>
-        <Route path="/write" element={
-            <PrivateRoute>
-              <Write />
-            </PrivateRoute>
-          }/>
-        <Route path="/test" element={
-            <PrivateRoute>
-              <MovieSearch />
-            </PrivateRoute>
-          }/>
+
       </Routes>
     </Layout>
   );
