@@ -85,6 +85,7 @@ const Write = () => {
   const onFinish = async (values) => {
     values.movie_id = movie.id;
     values.gather_date = date;
+    values.movie_title=movie.movie_title.replace(/<b>/gi, "").replace(/<\/b>/gi, "");
 
     axios
       .post("http://localhost:8000/movie/postWrite/", values)
