@@ -99,7 +99,7 @@ const Write = () => {
       .then((res) => {
         console.log(res);
         alert("등록되었습니다.");
-        // navigate('/${res.data}');
+        navigate(`/posts/${res.data}`);
         //movie/postWrite에 post후에 id 반환 요청 
       })
       .catch((error) => {
