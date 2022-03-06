@@ -5,6 +5,7 @@ import { Form, Input, InputNumber, Button } from "antd";
 import useDidMountEffect from "utils/useDidMountEffect";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { useAppContext } from "store";
 
 const Back = styled.div`
   background-color: gray;
@@ -82,13 +83,19 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const Write = () => {
+
+  const {
+    store : {jwtToken}
+  } = useAppContext();
+  
   const onFinish = async (values) => {
     values.movie_id = movie.id;
     values.gather_date = date;
     values.movie_title=movie.movie_title.replace(/<b>/gi, "").replace(/<\/b>/gi, "");
 
+    const headers = {Authorization : `JWT ${jwtToken}` };
     axios
-      .post("http://localhost:8000/movie/postWrite/", values)
+      .post("http://localhost:8000/movie/posts/", values, { headers })
       .then((res) => {
         console.log(res);
         alert("등록되었습니다.");
