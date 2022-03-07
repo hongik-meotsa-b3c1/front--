@@ -46,7 +46,7 @@ const MovieInfo = styled.span`
   }
 
   .space {
-    padding-bottom: 30px;
+    padding-bottom: 50px;
   }
 `;
 
@@ -67,7 +67,7 @@ const PostDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/movie/getPost/${id}`)
+      .get(`http://localhost:8000/movie/posts/${id}`)
       .then((res) => {
         setInfo(res.data);
         setIsloading(false);
@@ -141,11 +141,11 @@ const PostDetail = () => {
                   disabled
                 />
                 <div className="space" />
-                <input
-                  value={info.movie_actor.replace("|", " , ").slice(0,info.movie_actor.replace("|", " , ").indexOf('|'))}
+                {/* <input
+                //   value={info.movie_actor.replace("|", " , ").slice(0,info.movie_actor.replace("|", " , ").indexOf('|'))}
                   style={{ width: 330 }}
                   disabled
-                />
+                /> */}
               </span>
             </MovieInfo>
 

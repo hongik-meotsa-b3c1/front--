@@ -76,7 +76,7 @@ const PostList = styled.a`
 const Footer = styled.footer`
   width: 100%;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   height: 50px;
   font-family: Jua;
   display: flex;
@@ -105,7 +105,7 @@ const Layout = ({ children }) => {
 
         {localStorage.token ? (
           <>
-            <PostList href='#'>글목록</PostList>
+            <PostList href='/posts/list'>글목록</PostList>
             <Write href='/posts/write'>글쓰기</Write>
             <LogOut
               onClick={() => {
