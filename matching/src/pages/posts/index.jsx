@@ -1,5 +1,5 @@
 import { Route,Routes } from "react-router";
-import Write from "./Write";
+import Write from "./write";
 import PostDetail from "./PostDetail";
 import PostList from './PostList';
 
