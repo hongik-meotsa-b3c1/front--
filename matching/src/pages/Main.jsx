@@ -12,6 +12,7 @@ const Back = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 360px;
+  margin : 100px;
 
   .img{
     margin-left:225px;

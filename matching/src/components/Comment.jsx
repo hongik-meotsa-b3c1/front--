@@ -2,12 +2,9 @@ import React from "react";
 import {Comment as AntdComment, Tooltip } from "antd";
 import moment from "moment";
 
+
 const Comment = ({comment}) => {
-    const {
-        author: { username, nickname},
-        message,
-        created_at
-    } = comment;
+    const {author: { username, nickname}, message, created_at} = comment;
 
     return(
         <AntdComment

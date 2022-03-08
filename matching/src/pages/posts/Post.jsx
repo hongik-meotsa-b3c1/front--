@@ -41,9 +41,10 @@ const Post = ({id,author,title,content,movie_title,movie_image,NumOfPeople,gathe
         <h3>{content.length > 130? `${content.slice(0,130)}...`: content}</h3>
         </AlingTexts>
         </AlignImgText>
-        
         </a>
+
         </Box>
+        
     );
 }
 

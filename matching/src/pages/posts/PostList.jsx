@@ -38,6 +38,7 @@ const PostList = () => {
         <Movie>
           {posts.map((post) => (
             <Post
+      
               key={post.id}
               title={post.title}
               movie_image={post.movie_image}

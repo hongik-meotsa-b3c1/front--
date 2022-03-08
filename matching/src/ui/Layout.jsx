@@ -2,6 +2,11 @@ import styled from "styled-components";
 import homelogo from "ui/homelogo.jpeg";
 import { useNavigate } from "react-router";
 
+const Layout2 = styled.div`
+    margin:0;
+`;
+
+
 const TopNav = styled.nav`
   z-index: 1000;
   background-color: #f3f3f3;
@@ -75,9 +80,7 @@ const PostList = styled.a`
 
 const Footer = styled.footer`
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  height: 50px;
+  height: auto;
   font-family: Jua;
   display: flex;
   background-color: #f3f3f3;
@@ -85,6 +88,9 @@ const Footer = styled.footer`
   justify-content: center;
   color: black;
   padding-top: 25px;
+  bottom: 0;
+  position: relative;
+  
 `;
 
 const Children = styled.div`
@@ -92,14 +98,15 @@ const Children = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 160px;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   margin-left: 30px;
+
 `;
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
   return (
-    <>
+    <Layout2>
       <TopNav>
         <Logo onClick={() => navigate("/")} src={homelogo} />
 
@@ -127,7 +134,7 @@ const Layout = ({ children }) => {
 
       <Children>{children}</Children>
       <Footer>©2021 b3c1. All rights Reserved.</Footer>
-    </>
+    </ Layout2 >
   );
 };
 

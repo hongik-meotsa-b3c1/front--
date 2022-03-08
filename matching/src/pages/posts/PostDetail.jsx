@@ -4,6 +4,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Form, Input, InputNumber, Button } from "antd";
 import { Link } from "react-router-dom";
+import CommentList from "../../components/CommentList";
+
 
 const Back = styled.div`
   background-color: gray;
@@ -67,8 +69,9 @@ const PostDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/movie/posts/${id}`)
+      .get(`http://localhost:8000/movie/posts/${id}/`)
       .then((res) => {
+        console.log("RES",res.data);
         setInfo(res.data);
         setIsloading(false);
         console.log(info);
@@ -168,7 +171,11 @@ const PostDetail = () => {
               </Button>
             </Link>
           </Form>
+
+          <CommentList post_id={id}/>
         </Back>
+
+       
       )}
     </div>
   );
